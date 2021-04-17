@@ -15,7 +15,7 @@ args = parser.parse_args()
 
 if __name__ == "__main__":
     netG = GeneratorNet().cuda()
-    netG = netG.eval()
+#     netG = netG.eval()
     with torch.no_grad():
         checkpoint = torch.load(args.checkpoint)
         netG.load_state_dict(checkpoint)
