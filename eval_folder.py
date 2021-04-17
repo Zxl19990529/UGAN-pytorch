@@ -15,7 +15,6 @@ args = parser.parse_args()
 
 if __name__ == "__main__":
     netG = GeneratorNet().cuda()
-#     netG = netG.eval()
     with torch.no_grad():
         checkpoint = torch.load(args.checkpoint)
         netG.load_state_dict(checkpoint)
@@ -24,7 +23,7 @@ if __name__ == "__main__":
         for img_name in os.listdir(img_folder):
             img_path = os.path.join(img_folder,img_name)
             img = cv2.imread(img_path)
-            img = cv2.resize(img,(256,256))
+            img = cv2.resize(img,(512,512))
             img_tensor = img2tensor(img)
             output_tensor = netG.forward(img_tensor)
             output_img = tensor2img(output_tensor)
