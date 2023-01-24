@@ -33,7 +33,7 @@ def loss_gradient_difference(real_image,generated): # b x c x h x w
 
     difference_x = true_x_gradient - generated_x_griednt
 
-    loss_x_gradient = (torch.sum(difference_x)**2)/2 # tf.nn.l2_loss(true_x_gradient - generated_x_gradient)
+    loss_x_gradient = (torch.sum(difference_x**2))/2 # tf.nn.l2_loss(true_x_gradient - generated_x_gradient)
 
     true_y_shifted_right = real_image[:,:,:,1:]
     true_y_shifted_left = real_image[:,:,:,:-1]
@@ -44,7 +44,7 @@ def loss_gradient_difference(real_image,generated): # b x c x h x w
     generated_y_griednt = torch.abs(generated_y_shift_left - generated_y_shift_right)
 
     difference_y = true_y_gradient - generated_y_griednt
-    loss_y_gradient = (torch.sum(difference_y)**2)/2 # tf.nn.l2_loss(true_y_gradient - generated_y_gradient)
+    loss_y_gradient = (torch.sum(difference_y**2))/2 # tf.nn.l2_loss(true_y_gradient - generated_y_gradient)
 
     igdl = loss_x_gradient + loss_y_gradient
     return igdl
